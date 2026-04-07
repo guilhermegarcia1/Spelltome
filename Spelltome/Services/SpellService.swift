@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SpellService {
+class SpellService: SpellServiceProtocol {
     
     let urlString: String = "https://api.open5e.com/v1/spells/?limit=500&document__slug=wotc-srd"
     

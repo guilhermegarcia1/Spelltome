@@ -13,9 +13,9 @@ class SpellListViewModel: ObservableObject {
     
     @Published var spells: [Spell] = []
     
-    let spellService: SpellService
+    let spellService: SpellServiceProtocol
     
-    init(service: SpellService){
+    init(service: SpellServiceProtocol){
         self.spellService = service
     }
     
