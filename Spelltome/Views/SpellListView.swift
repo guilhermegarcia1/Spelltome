@@ -9,7 +9,12 @@ import SwiftUI
 
 struct SpellListView: View {
     
+    #if DEBUG
+    @StateObject private var viewModel = SpellListViewModel(service: SpellServiceMock())
+    #else
     @StateObject private var viewModel = SpellListViewModel(service: SpellService())
+    #endif
+    
     
     var body: some View {
         
@@ -35,4 +40,10 @@ struct SpellListView: View {
 
 #Preview {
     SpellListView()
+        .preferredColorScheme(.dark)
+}
+
+#Preview {
+    SpellListView()
+        .preferredColorScheme(.light)
 }
