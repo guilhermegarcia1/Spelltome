@@ -15,7 +15,6 @@ struct SpellListView: View {
     @StateObject private var viewModel = SpellListViewModel(service: SpellService())
     #endif
     
-    
     var body: some View {
         
         NavigationStack {
@@ -23,7 +22,7 @@ struct SpellListView: View {
                 ForEach(viewModel.spellsByLevel, id: \.key) { group in
                     Section(group.key == 0 ? "Cantrip" : "Magias de \(group.key)º nível") {
                         ForEach(group.value) { spell in
-                            Text(spell.name)
+                            NavigationLink(spell.name, destination: SpellDetailView(spell: spell))
                         }
                     }
                 }
