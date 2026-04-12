@@ -16,8 +16,25 @@ struct Spell: Identifiable, Codable {
     let castingTime: String
     let range: String
     let components: String
+    let material: String
     let duration: String
     let description: String
+    var componentsFormatted: String {
+        return material == "" ? components : "\(components) \(material)"
+    }
+    
+    var descriptionFormatted: AttributedString {
+        let markdownOption = AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace)
+        let magicDescription: String  = description
+        let searchWords = "At Higher Levels"
+        var attrString = try! AttributedString(markdown: magicDescription, options: markdownOption)
+        
+        if let range = attrString.range(of: searchWords) {
+            attrString[range].inlinePresentationIntent = .stronglyEmphasized
+        }
+        
+        return attrString
+    }
     
     enum CodingKeys: String, CodingKey {
         case id = "slug"
@@ -28,6 +45,7 @@ struct Spell: Identifiable, Codable {
         case castingTime = "casting_time"
         case range
         case components
+        case material
         case duration
         case description = "desc"
     }
