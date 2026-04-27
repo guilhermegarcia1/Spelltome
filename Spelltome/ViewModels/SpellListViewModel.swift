@@ -12,6 +12,7 @@ import Combine
 class SpellListViewModel: ObservableObject {
     
     @Published var spells: [Spell] = []
+    @Published var searchText: String = ""
     
     let spellService: SpellServiceProtocol
     
@@ -30,6 +31,14 @@ class SpellListViewModel: ObservableObject {
     var spellsByLevel: [(key: Int, value: [Spell])] {
         let grouped = Dictionary(grouping: spells, by: { $0.levelInt })
         return grouped.sorted { $0.key < $1.key }.map {(key: $0.key, value: $0.value)}
+    }
+    
+    var filteredSpells: [Spell] {
+        if searchText.count == 0 {
+            return spells
+        } else {
+            return spells.filter { $0.name.contains(searchText) }
+        }
     }
     
 }
