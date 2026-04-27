@@ -68,6 +68,30 @@ struct SpellServiceMock: SpellServiceProtocol {
                             material: "",
                             duration: "1 round",
                             description: "You speak a one-word command to a creature you can see within range. The target must succeed on a wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is undead, if it doesn't understand your language, or if your command is directly harmful to it. Some typical commands and their effects follow. You might issue a command other than one described here. If you do so, the DM determines how the target behaves. If the target can't follow your command, the spell ends\n\n **Approach.** The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet of you.\n\n**Drop** The target drops whatever it is holding and then ends its turn.\n\n**Flee.** The target spends its turn moving away from you by the fastest available means.\n\n**Grovel.** The target falls prone and then ends its turn.\n\n**Halt.** The target doesn't move and takes no actions. A flying creature stays aloft, provided that it is able to do so. If it must move to stay aloft, it flies the minimum distance needed to remain in the air.\nAt Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them."
+                           ),
+                           Spell(
+                            name: "Delayed Blast Fireball",
+                            level: "7rd-level",
+                            levelInt: 7,
+                            school: "Evocation",
+                            castingTime: "1 Action",
+                            range: "150 feet",
+                            components: "V, S, M",
+                            material: "(a tiny ball of bat guano and sulfur)",
+                            duration: "Up to 1 minute",
+                            description: "A beam of yellow light flashes from your pointing finger, then condenses to linger at a chosen point within range as a glowing bead for the duration. When the spell ends, either because your concentration is broken or because you decide to end it, the bead blossoms with a low roar into an explosion of flame that spreads around corners. Each creature in a 20-foot-radius sphere centered on that point must make a dexterity saving throw. A creature takes fire damage equal to the total accumulated damage on a failed save, or half as much damage on a successful one. The spell's base damage is 12d6. If at the end of your turn the bead has not yet detonated, the damage increases by 1d6. If the glowing bead is touched before the interval has expired, the creature touching it must make a dexterity saving throw. On a failed save, the spell ends immediately, causing the bead to erupt in flame. On a successful save, the creature can throw the bead up to 40 feet. When it strikes a creature or a solid object, the spell ends, and the bead explodes. The fire damages objects in the area and ignites flammable objects that aren't being worn or carried."
+                           ),
+                           Spell(
+                            name: "Fire bolt",
+                            level: "Cantrip",
+                            levelInt: 0,
+                            school: "Evocation",
+                            castingTime: "1 Action",
+                            range: "120 feet",
+                            components: "V, S",
+                            material: "",
+                            duration: "Instantaneous",
+                            description: "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried."
                            )]
     
     func fetchSpells() async throws -> [Spell] {
