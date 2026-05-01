@@ -8,7 +8,6 @@
 import Foundation
 
 struct SpellServiceMock: SpellServiceProtocol {
-    
     let spells: [Spell] = [Spell(
                             name: "Fireball",
                             level: "3rd-level",
