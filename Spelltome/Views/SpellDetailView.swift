@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SpellDetailView: View {
-    
     let spell: Spell
     
     var body: some View {
@@ -44,7 +43,6 @@ struct SpellDetailView: View {
         .padding()
         .navigationTitle(spell.name)
     }
-    
 }
 
 #Preview {

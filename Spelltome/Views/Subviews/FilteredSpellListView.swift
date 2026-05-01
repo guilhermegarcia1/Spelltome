@@ -26,4 +26,5 @@ struct FilteredSpellListView: View {
 
 #Preview{
     FilteredSpellListView(spellList: SpellServiceMock().spells)
+        .preferredColorScheme(.light)
 }
