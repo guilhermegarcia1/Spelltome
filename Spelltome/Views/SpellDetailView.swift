@@ -37,7 +37,6 @@ struct SpellDetailView: View {
                     Text(spell.descriptionFormatted).font(.body)
                 }
             }
-            
             Spacer()
         }
         .padding()

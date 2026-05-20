@@ -19,6 +19,7 @@ struct Spell: Identifiable, Codable {
     let material: String
     let duration: String
     let description: String
+    let charClass: String
     var componentsFormatted: String {
         return material == "" ? components : "\(components) \(material)"
     }
@@ -48,5 +49,6 @@ struct Spell: Identifiable, Codable {
         case material
         case duration
         case description = "desc"
+        case charClass = "dnd_class"
     }
 }
