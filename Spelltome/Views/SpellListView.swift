@@ -18,7 +18,30 @@ struct SpellListView: View {
 #endif
     
     var body: some View {
+        
         NavigationStack {
+            HStack {
+                Menu {
+                    Button("By Name", action: {viewModel.typeFilter = .name})
+                    Button("By School", action: {viewModel.typeFilter = .school})
+                    Button("By Class", action: {viewModel.typeFilter = .charClass})
+                } label: {
+                    Label(viewModel.selectedFilter, systemImage: "line.3.horizontal.decrease")
+                }
+                .padding(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                if viewModel.typeFilter == .school {
+                    Picker("School", selection: $viewModel.selectedSchool) {
+                        Text("None").tag(nil as SpellSchool?)
+                        ForEach(SpellSchool.allCases, id: \.rawValue) { school in
+                            Text(school.rawValue).tag(school as SpellSchool?)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+            }
+            
             List {
                 if viewModel.searchText.isEmpty {
                     ForEach(viewModel.spellsByLevel, id: \.key) { group in
