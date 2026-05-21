@@ -14,6 +14,7 @@ class SpellListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var typeFilter: TypeFilter = .name
     @Published var selectedSchool: SpellSchool? = nil
+    @Published var selectedClass: SpellClass? = nil
     
     let spellService: SpellServiceProtocol
     
@@ -46,7 +47,19 @@ class SpellListViewModel: ObservableObject {
                     return spells.filter{ $0.school.contains(spellsBySchool) && $0.name.contains(searchText) }
                 }
             case .charClass:
-                return spells.filter{ $0.charClass.contains(searchText) }
+                guard let spellsByClass = selectedClass?.rawValue else {
+                    if searchText.count == 0 {
+                        return spells
+                    } else {
+                        return spells.filter { $0.name.contains(searchText) }
+                    }
+                }
+                
+                if searchText.count == 0 {
+                    return spells.filter{ $0.charClass.contains(spellsByClass) }
+                } else {
+                    return spells.filter{ $0.charClass.contains(spellsByClass) && $0.name.contains(searchText) }
+                }
             default:
                 if searchText.count == 0 {
                     return spells
