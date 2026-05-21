@@ -18,7 +18,6 @@ struct SpellListView: View {
 #endif
     
     var body: some View {
-        
         NavigationStack {
             HStack {
                 Menu {
@@ -36,6 +35,14 @@ struct SpellListView: View {
                         Text("None").tag(nil as SpellSchool?)
                         ForEach(SpellSchool.allCases, id: \.rawValue) { school in
                             Text(school.rawValue).tag(school as SpellSchool?)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                } else if viewModel.typeFilter == .charClass {
+                    Picker("Class", selection: $viewModel.selectedClass) {
+                        Text("None").tag(nil as SpellClass?)
+                        ForEach(SpellClass.allCases, id: \.rawValue) { charClass in
+                            Text(charClass.rawValue).tag(charClass as SpellClass?)
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
